@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="obsidian">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VEXDYN Learn — structured technology learning paths." />
+  <title>Learn — VEXDYN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+    <div class="search-panel">
+      <div class="search-bar">
+        <input type="search" id="searchInput" placeholder="What are you looking for?" autocomplete="off" enterkeyhint="search" />
+        <button class="search-close" id="searchClose" aria-label="Close search">✕</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link" aria-label="VEXDYN Home">
+        <img src="vexdyn-logo-wordmark.png" alt="VEXDYN" class="logo-swap" height="36" />
+      </a>
+      <nav class="nav-desktop" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="websites.html">Websites</a>
+        <a href="learn.html" class="active">Learn</a>
+        <a href="plus.html">VEXDYN+</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cmd-btn" id="cmdBtn" aria-label="Search" title="Search">⌕</button>
+        <div class="theme-wrap">
+          <button class="theme-btn" id="themeBtn" aria-label="Change theme">🌙</button>
+          <div class="theme-panel" id="themePanel">
+            <button class="theme-option active" data-theme="obsidian">🌙 Obsidian</button>
+            <button class="theme-option" data-theme="aurora">☀️ Aurora</button>
+            <button class="theme-option" data-theme="ice">❄️ Ice</button>
+          </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="nav-mobile" id="navMobile">
+    <a href="index.html">Home</a>
+    <a href="websites.html">Websites</a>
+    <a href="learn.html" class="active">Learn</a>
+    <a href="plus.html">VEXDYN+</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="main">
+    <div class="page-hero reveal">
+      <span class="section-label">VEXDYN Learn</span>
+      <h1>LEARN THE LANGUAGE OF TECHNOLOGY.</h1>
+      <p>Structured paths. Clear progress. Real skills you can use immediately.</p>
+    </div>
+
+    <section class="section" style="padding-top:0">
+      <div class="grid-3">
+        <article class="v-card learn-card reveal" data-progress="60">
+          <div class="learn-header">
+            <span class="learn-tech">HTML</span>
+            <span class="learn-diff">Beginner</span>
+          </div>
+          <div class="learn-meta"><span>20 Lessons</span></div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num">0%</span>
+          </div>
+          <a href="#" class="btn btn-primary" onclick="event.preventDefault()">CONTINUE →</a>
+          <p class="placeholder-notice">Lessons coming soon</p>
+        </article>
+        <article class="v-card learn-card reveal reveal-delay-1" data-progress="35">
+          <div class="learn-header">
+            <span class="learn-tech">CSS</span>
+            <span class="learn-diff">Beginner</span>
+          </div>
+          <div class="learn-meta"><span>24 Lessons</span></div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num">0%</span>
+          </div>
+          <a href="#" class="btn btn-primary" onclick="event.preventDefault()">CONTINUE →</a>
+          <p class="placeholder-notice">Lessons coming soon</p>
+        </article>
+        <article class="v-card learn-card reveal reveal-delay-2" data-progress="10">
+          <div class="learn-header">
+            <span class="learn-tech">JavaScript</span>
+            <span class="learn-diff">Intermediate</span>
+          </div>
+          <div class="learn-meta"><span>32 Lessons</span></div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num">0%</span>
+          </div>
+          <a href="#" class="btn btn-secondary" onclick="event.preventDefault()">START →</a>
+          <p class="placeholder-notice">Lessons coming soon</p>
+        </article>
+        <article class="v-card learn-card reveal" data-progress="0">
+          <div class="learn-header">
+            <span class="learn-tech">Python</span>
+            <span class="learn-diff">Beginner</span>
+          </div>
+          <div class="learn-meta"><span>28 Lessons</span></div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num">0%</span>
+          </div>
+          <a href="#" class="btn btn-secondary" onclick="event.preventDefault()">START →</a>
+          <p class="placeholder-notice">Lessons coming soon</p>
+        </article>
+        <article class="v-card learn-card reveal reveal-delay-1" data-progress="0">
+          <div class="learn-header">
+            <span class="learn-tech">React</span>
+            <span class="learn-diff">Advanced</span>
+          </div>
+          <div class="learn-meta"><span>36 Lessons</span></div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num">0%</span>
+          </div>
+          <a href="#" class="btn btn-secondary" onclick="event.preventDefault()">START →</a>
+          <p class="placeholder-notice">Lessons coming soon</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="vexdyn-logo-wordmark.png" alt="VEXDYN" class="logo-swap" height="32" />
+        <p>Technology, tools and knowledge for turning digital ideas into reality.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="websites.html">Websites</a>
+        <a href="learn.html">Learn</a>
+        <a href="plus.html">VEXDYN+</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Founder</h4>
+        <div class="founder-card">
+          <span class="founder-name">David Augustine</span>
+          <span class="founder-title">Creator & Owner</span>
+          <span class="founder-contact">07025664141</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VEXDYN. All rights reserved.</span>
+      <span>Build What's Next.</span>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
