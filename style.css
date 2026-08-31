@@ -509,6 +509,8 @@ ul, ol { list-style: none; }
   width: 100%;
   position: relative;
   z-index: 2;
+  background: transparent;
+  background-color: transparent;
 }
 .hero-title {
   font-size: clamp(2.4rem, 6.5vw, 4.2rem);
@@ -537,13 +539,13 @@ ul, ol { list-style: none; }
   max-width: min(280px, 70vw);
   height: auto;
   margin-bottom: 8px;
-  background: none !important;
+  background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
   border: none !important;
+  padding: 0;
 }
-/* Aurora: darken the light wordmark so it stays readable on light bg */
 [data-theme="aurora"] .hero-wordmark {
   filter: brightness(0) saturate(100%);
   opacity: 0.88;
@@ -558,25 +560,20 @@ ul, ol { list-style: none; }
   top: 18%;
   width: 42%;
   max-width: 440px;
-  opacity: 0.14;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 1;
-  /* Black-bg PNG → transparent via screen blend on dark themes */
-  mix-blend-mode: screen;
   background: transparent !important;
 }
 [data-theme="aurora"] .hero-geo {
-  opacity: 0.12;
-  mix-blend-mode: multiply;
-  filter: invert(1);
+  opacity: 0.1;
+  filter: brightness(0) saturate(100%);
 }
 [data-theme="ice"] .hero-geo {
-  opacity: 0.16;
-  mix-blend-mode: screen;
+  opacity: 0.14;
 }
 
 /* ========== HERO LIQUID-METAL WAVES (homepage only) ========== */
-/* Exactly 2 large soft organic shapes — confined to .hero, no tiling */
 .hero-waves {
   position: absolute;
   inset: 0;
@@ -586,50 +583,42 @@ ul, ol { list-style: none; }
 }
 .hero-wave {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
+  left: -50%;
+  width: 200%;
+  height: 70%;
+  min-height: 280px;
   will-change: transform;
   pointer-events: none;
+  filter: blur(2px);
 }
-
-/* Wave 1 — dark silver / graphite, bottom-left → drifts slowly */
+/* Wave 1 dark — continuous FORWARD (left → right) */
 .hero-wave-1 {
-  width: 85%;
-  height: 55%;
-  left: -20%;
-  bottom: -15%;
-  background: var(--wave-dark-1);
-  animation: waveDrift1 20s ease-in-out infinite;
+  bottom: -5%;
+  animation: waveFlowForward 5.5s linear infinite;
+  opacity: 0.85;
 }
-
-/* Wave 2 — bright silver, upper area, opposite drift */
+/* Wave 2 bright — continuous BACKWARD (right → left) */
 .hero-wave-2 {
-  width: 75%;
-  height: 50%;
-  right: -18%;
-  top: -12%;
-  background: var(--wave-bright-1);
-  animation: waveDrift2 16s ease-in-out infinite;
+  bottom: 5%;
+  height: 65%;
+  animation: waveFlowBackward 7s linear infinite;
+  opacity: 0.7;
 }
 
-@keyframes waveDrift1 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33%  { transform: translate(8%, -6%) scale(1.06) rotate(3deg); }
-  66%  { transform: translate(-4%, 4%) scale(0.97) rotate(-2deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+/* Seamless continuous flow: translate by 50% of the doubled-width element */
+@keyframes waveFlowForward {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(25%, 0, 0); }
 }
-@keyframes waveDrift2 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  40%  { transform: translate(-10%, 5%) scale(1.08) rotate(-4deg); }
-  70%  { transform: translate(5%, -4%) scale(0.95) rotate(2deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+@keyframes waveFlowBackward {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-25%, 0, 0); }
 }
 
-/* Theme soft glow refinement */
 [data-theme="obsidian"] .hero-wave-1 { opacity: 0.9; }
 [data-theme="obsidian"] .hero-wave-2 { opacity: 0.75; }
-[data-theme="aurora"] .hero-wave-1 { opacity: 0.7; }
-[data-theme="aurora"] .hero-wave-2 { opacity: 0.55; }
+[data-theme="aurora"] .hero-wave-1 { opacity: 0.55; }
+[data-theme="aurora"] .hero-wave-2 { opacity: 0.45; }
 [data-theme="ice"] .hero-wave-1 { opacity: 0.85; }
 [data-theme="ice"] .hero-wave-2 { opacity: 0.7; }
 
@@ -640,20 +629,13 @@ ul, ol { list-style: none; }
 }
 
 @media (max-width: 700px) {
-  .hero-wave-1 {
-    width: 110%;
-    height: 45%;
-    left: -30%;
-    bottom: -18%;
-    filter: blur(60px);
+  .hero-wave {
+    width: 220%;
+    left: -55%;
+    height: 55%;
   }
-  .hero-wave-2 {
-    width: 95%;
-    height: 40%;
-    right: -25%;
-    top: -15%;
-    filter: blur(60px);
-  }
+  .hero-wave-1 { bottom: -8%; opacity: 0.75; }
+  .hero-wave-2 { bottom: 0; height: 50%; opacity: 0.6; }
 }
 
 /* ========== VEXDYN CARD SYSTEM ========== */
@@ -1609,23 +1591,21 @@ ul, ol { list-style: none; }
   color: #a5f3fc;
 }
 
-/* Single logo swap target — black-bg PNG assets rendered transparently via blend */
+/* Single logo swap target — true alpha PNG assets */
 .logo-swap {
   height: 36px;
   width: auto;
   max-width: 150px;
   object-fit: contain;
   background: transparent !important;
+  background-color: transparent !important;
   display: block;
-  /* Dark themes: screen makes pure black transparent, keeps silver/white logo */
-  mix-blend-mode: screen;
 }
 .footer-brand .logo-swap {
   height: 32px;
   margin-bottom: 14px;
 }
-/* Aurora (light bg): invert then multiply → dark logo, white/black becomes transparent */
 [data-theme="aurora"] .logo-swap {
-  mix-blend-mode: multiply;
-  filter: invert(1);
+  filter: brightness(0) saturate(100%);
+  opacity: 0.9;
 }

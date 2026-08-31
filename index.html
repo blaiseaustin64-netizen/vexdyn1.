@@ -43,7 +43,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo-link" aria-label="VEXDYN Home">
-        <img src="vexdyn-logo-wordmark.png" alt="VEXDYN" class="logo-swap" height="36" />
+        <img src="vexdyn-logo-wordmark-alpha.png" alt="VEXDYN" class="logo-swap" height="36" />
       </a>
       <nav class="nav-desktop" aria-label="Main">
         <a href="index.html" class="active">Home</a>
@@ -80,12 +80,32 @@
   <main class="main">
     <!-- HERO -->
     <section class="hero">
-      <!-- Liquid-metal wave atmosphere (homepage Hero only) — 2 large organic shapes -->
+      <!-- Liquid-metal wave atmosphere (homepage Hero only) -->
       <div class="hero-waves" aria-hidden="true">
-        <div class="hero-wave hero-wave-1"></div>
-        <div class="hero-wave hero-wave-2"></div>
+        <!-- Wave 1 dark — flows FORWARD → -->
+        <svg class="hero-wave hero-wave-1" viewBox="0 0 2400 600" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gWave1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--wave-dark-1)"/>
+              <stop offset="55%" stop-color="var(--wave-dark-1)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#gWave1)" d="M0,260 C200,160 400,360 600,260 C800,160 1000,360 1200,260 C1400,160 1600,360 1800,260 C2000,160 2200,360 2400,260 L2400,600 L0,600 Z"/>
+        </svg>
+        <!-- Wave 2 bright — flows BACKWARD ← -->
+        <svg class="hero-wave hero-wave-2" viewBox="0 0 2400 600" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gWave2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--wave-bright-1)"/>
+              <stop offset="55%" stop-color="var(--wave-bright-1)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#gWave2)" d="M0,300 C250,400 450,200 700,300 C950,400 1150,200 1400,300 C1650,400 1850,200 2100,300 C2250,360 2350,240 2400,300 L2400,600 L0,600 Z"/>
+        </svg>
       </div>
-      <img src="vexdyn-symbol.png" alt="" class="hero-geo" aria-hidden="true" />
+      <img src="vexdyn-symbol-alpha.png" alt="" class="hero-geo" aria-hidden="true" />
       <div class="hero-inner">
         <img src="vexdyn-wordmark-true-transparent.png" alt="VEXDYN" class="hero-wordmark reveal" />
         <div class="code-transform" id="codeTransform" aria-live="polite">0100110100101101</div>
@@ -317,7 +337,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="vexdyn-logo-wordmark.png" alt="VEXDYN" class="logo-swap" height="32" />
+        <img src="vexdyn-logo-wordmark-alpha.png" alt="VEXDYN" class="logo-swap" height="32" />
         <p>Technology, tools and knowledge for turning digital ideas into reality.</p>
       </div>
       <div class="footer-col">

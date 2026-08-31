@@ -25,9 +25,9 @@
   }
 
   const LOGO_SRC = {
-    obsidian: "vexdyn-logo-wordmark.png",
-    aurora: "vexdyn-aurora.png",
-    ice: "vexdyn-ice.png"
+    obsidian: "vexdyn-logo-wordmark-alpha.png",
+    aurora: "vexdyn-aurora-alpha.png",
+    ice: "vexdyn-ice-alpha.png"
   };
 
   function setTheme(theme) {
