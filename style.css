@@ -44,10 +44,10 @@
     radial-gradient(ellipse 90% 55% at 50% -15%, rgba(90, 40, 150, 0.16), transparent 55%),
     radial-gradient(ellipse 55% 40% at 95% 75%, rgba(40, 60, 140, 0.09), transparent 50%),
     radial-gradient(ellipse 45% 30% at 5% 55%, rgba(60, 30, 110, 0.07), transparent 45%);
-  --wave-dark-1: rgba(70, 75, 95, 0.28);
-  --wave-dark-2: rgba(120, 125, 150, 0.20);
-  --wave-bright-1: rgba(190, 195, 220, 0.18);
-  --wave-bright-2: rgba(230, 235, 250, 0.14);
+  --wave-dark-1: rgba(90, 95, 120, 0.16);
+  --wave-dark-2: rgba(150, 155, 180, 0.10);
+  --wave-bright-1: rgba(210, 215, 235, 0.12);
+  --wave-bright-2: rgba(240, 245, 255, 0.08);
 }
 
 /* ========== AURORA ========== */
@@ -77,10 +77,10 @@
     radial-gradient(ellipse 90% 55% at 50% -15%, rgba(180, 160, 220, 0.18), transparent 55%),
     radial-gradient(ellipse 55% 40% at 95% 75%, rgba(160, 190, 230, 0.12), transparent 50%),
     radial-gradient(ellipse 45% 30% at 5% 55%, rgba(200, 180, 220, 0.1), transparent 45%);
-  --wave-dark-1: rgba(100, 105, 120, 0.18);
-  --wave-dark-2: rgba(140, 145, 160, 0.14);
-  --wave-bright-1: rgba(80, 85, 100, 0.16);
-  --wave-bright-2: rgba(50, 55, 70, 0.12);
+  --wave-dark-1: rgba(90, 95, 115, 0.12);
+  --wave-dark-2: rgba(120, 125, 145, 0.08);
+  --wave-bright-1: rgba(70, 75, 95, 0.10);
+  --wave-bright-2: rgba(45, 50, 65, 0.07);
 }
 
 /* ========== ICE ========== */
@@ -110,10 +110,10 @@
     radial-gradient(ellipse 90% 55% at 50% -15%, rgba(20, 110, 170, 0.28), transparent 55%),
     radial-gradient(ellipse 55% 40% at 95% 75%, rgba(10, 90, 150, 0.18), transparent 50%),
     radial-gradient(ellipse 45% 30% at 5% 55%, rgba(30, 130, 190, 0.14), transparent 45%);
-  --wave-dark-1: rgba(40, 90, 120, 0.26);
-  --wave-dark-2: rgba(80, 140, 180, 0.18);
-  --wave-bright-1: rgba(160, 220, 250, 0.16);
-  --wave-bright-2: rgba(200, 240, 255, 0.12);
+  --wave-dark-1: rgba(50, 100, 135, 0.14);
+  --wave-dark-2: rgba(90, 150, 190, 0.09);
+  --wave-bright-1: rgba(170, 225, 255, 0.11);
+  --wave-bright-2: rgba(210, 240, 255, 0.07);
 }
 
 /* ========== RESET ========== */
@@ -529,18 +529,46 @@ ul, ol { list-style: none; }
   line-height: 1.6;
 }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Hero wordmark — official asset, black bg removed via blend */
+.hero-wordmark {
+  display: block;
+  width: auto;
+  max-width: min(280px, 70vw);
+  height: auto;
+  margin-bottom: 8px;
+  background: transparent !important;
+  mix-blend-mode: screen;
+}
+[data-theme="aurora"] .hero-wordmark {
+  mix-blend-mode: multiply;
+  filter: invert(1);
+}
+[data-theme="ice"] .hero-wordmark {
+  mix-blend-mode: screen;
+}
 .hero-geo {
   position: absolute;
   right: -8%;
   top: 18%;
   width: 42%;
   max-width: 440px;
-  opacity: 0.1;
+  opacity: 0.14;
   pointer-events: none;
   z-index: 1;
+  /* Black-bg PNG → transparent via screen blend on dark themes */
+  mix-blend-mode: screen;
+  background: transparent !important;
 }
-[data-theme="aurora"] .hero-geo { opacity: 0.07; }
-[data-theme="ice"] .hero-geo { opacity: 0.12; }
+[data-theme="aurora"] .hero-geo {
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  filter: invert(1);
+}
+[data-theme="ice"] .hero-geo {
+  opacity: 0.16;
+  mix-blend-mode: screen;
+}
 
 /* ========== HERO LIQUID-METAL WAVES (homepage only) ========== */
 .hero-waves {
@@ -552,116 +580,95 @@ ul, ol { list-style: none; }
 }
 .hero-wave {
   position: absolute;
-  left: -25%;
-  width: 160%;
+  left: -50%;
+  width: 200%;
   height: 58%;
-  min-height: 240px;
+  min-height: 220px;
   will-change: transform;
 }
+/* Dark silver / graphite — flows FORWARD (left to right) */
 .hero-wave-dark {
-  bottom: -10%;
-  height: 62%;
-  animation: waveSlideDark 6.8s ease-in-out infinite alternate;
+  bottom: -12%;
+  height: 60%;
+  animation: waveForward 6.5s linear infinite;
 }
+/* Bright silver — flows BACKWARD (right to left) */
 .hero-wave-bright {
-  top: -8%;
-  height: 54%;
-  animation: waveSlideBright 5.1s ease-in-out infinite alternate;
+  top: -10%;
+  height: 52%;
+  animation: waveBackward 4.8s linear infinite;
 }
 
-/* Metallic fills — theme-aware */
+/* Metallic fills — translucent, not solid grey blocks */
 .wave-fill-dark {
   fill: var(--wave-dark-1);
 }
 .wave-fill-dark-soft {
   fill: var(--wave-dark-2);
-  opacity: 0.7;
+  opacity: 0.55;
 }
 .wave-fill-bright {
   fill: var(--wave-bright-1);
 }
 .wave-fill-bright-soft {
   fill: var(--wave-bright-2);
-  opacity: 0.65;
+  opacity: 0.5;
 }
 
-/* Independent path drift for layered liquid motion */
-.wave-path-a {
-  animation: waveShiftA 7.5s ease-in-out infinite alternate;
+/* Continuous opposite directions — no alternate, seamless linear slide */
+@keyframes waveForward {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(25%, 0, 0); }
 }
-.wave-path-b {
-  animation: waveShiftB 9.2s ease-in-out infinite alternate;
-}
-.wave-path-c {
-  animation: waveShiftC 5.8s ease-in-out infinite alternate;
-}
-.wave-path-d {
-  animation: waveShiftD 8.1s ease-in-out infinite alternate;
+@keyframes waveBackward {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-25%, 0, 0); }
 }
 
-@keyframes waveSlideDark {
-  0%   { transform: translate3d(0, 0, 0) scaleY(1); }
-  50%  { transform: translate3d(-3.5%, 2.5%, 0) scaleY(1.05); }
-  100% { transform: translate3d(2.5%, -1.5%, 0) scaleY(0.96); }
-}
-@keyframes waveSlideBright {
-  0%   { transform: translate3d(0, 0, 0) scaleY(1); }
-  50%  { transform: translate3d(4.5%, -3.5%, 0) scaleY(1.07); }
-  100% { transform: translate3d(-2.5%, 1.8%, 0) scaleY(0.95); }
-}
-
-@keyframes waveShiftA {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-2.8%); }
-}
-@keyframes waveShiftB {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(3.4%); }
-}
-@keyframes waveShiftC {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(4.2%); }
-}
-@keyframes waveShiftD {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-3.6%); }
-}
-
-/* Soft metallic sheen via blend where appropriate */
+/* Theme blend refinements for metallic quality */
 [data-theme="obsidian"] .hero-wave-bright {
+  mix-blend-mode: soft-light;
+}
+[data-theme="obsidian"] .hero-wave-dark {
   mix-blend-mode: soft-light;
 }
 [data-theme="aurora"] .hero-wave-bright {
   mix-blend-mode: multiply;
-  opacity: 0.9;
+  opacity: 0.75;
+}
+[data-theme="aurora"] .hero-wave-dark {
+  mix-blend-mode: multiply;
+  opacity: 0.7;
 }
 [data-theme="ice"] .hero-wave-bright {
   mix-blend-mode: screen;
 }
+[data-theme="ice"] .hero-wave-dark {
+  mix-blend-mode: soft-light;
+}
 
-/* Reduced motion: static atmospheric waves */
+/* Reduced motion: freeze waves as static atmosphere */
 @media (prefers-reduced-motion: reduce) {
-  .hero-wave,
-  .wave-path {
+  .hero-wave {
     animation: none !important;
   }
 }
 
-/* Mobile tuning — keep content clear */
+/* Mobile — keep waves atmospheric, content clear */
 @media (max-width: 700px) {
   .hero-wave {
-    width: 180%;
-    left: -35%;
+    width: 220%;
+    left: -55%;
   }
   .hero-wave-dark {
-    height: 50%;
-    bottom: -14%;
-    opacity: 0.8;
+    height: 48%;
+    bottom: -16%;
+    opacity: 0.75;
   }
   .hero-wave-bright {
-    height: 44%;
-    top: -12%;
-    opacity: 0.7;
+    height: 42%;
+    top: -14%;
+    opacity: 0.65;
   }
 }
 
@@ -1618,7 +1625,7 @@ ul, ol { list-style: none; }
   color: #a5f3fc;
 }
 
-/* Single logo swap target */
+/* Single logo swap target — black-bg PNG assets rendered transparently via blend */
 .logo-swap {
   height: 36px;
   width: auto;
@@ -1626,8 +1633,15 @@ ul, ol { list-style: none; }
   object-fit: contain;
   background: transparent !important;
   display: block;
+  /* Dark themes: screen makes pure black transparent, keeps silver/white logo */
+  mix-blend-mode: screen;
 }
 .footer-brand .logo-swap {
   height: 32px;
   margin-bottom: 14px;
+}
+/* Aurora (light bg): invert then multiply → dark logo, white/black becomes transparent */
+[data-theme="aurora"] .logo-swap {
+  mix-blend-mode: multiply;
+  filter: invert(1);
 }
